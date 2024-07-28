@@ -6,56 +6,6 @@ Created on Sun Jul 28 00:38:08 2024
 @author: syedzaidi
 """
 
-# import pandas as pd
-# import os
-
-# def read_and_filter_genus_names(directory):
-#     genus_list = []
-#     for filename in os.listdir(directory):
-#         if filename.endswith("_report"):  # Assuming the files are .txt format
-#             file_path = os.path.join(directory, filename)
-#             # Read file starting from line 4, assuming separator is tab
-#             df = pd.read_csv(file_path, sep='\t', header=None, skiprows=3)
-#             df.columns = ['percent', 'reads', 'taxReads', 'kmers', 'dup', 'cov', 'taxID', 'rank', 'taxName']
-#             # Filter by genus
-#             filtered = df[df['rank'] == 'genus']
-#             filtered['taxName'] = filtered['taxName'].str.strip()
-#             genus_list.extend(filtered[['rank', 'taxName']].drop_duplicates().values.tolist())
-    
-#     # Remove duplicates from the list
-#     unique_genus = set(tuple(i) for i in genus_list)
-#     return list(unique_genus)
-
-# # Example usage
-# directory = '/Users/syedzaidi/Desktop/Organized_data/Immunobiology_2022/Dep.MedicineWork/ViralAsthma_AnthonyBosco/KU_analysis_0725/Nasal_Blood_KU.report_Combined_0711/'
-# path = '/Users/syedzaidi/Desktop/Organized_data/Immunobiology_2022/Dep.MedicineWork/ViralAsthma_AnthonyBosco/KU_analysis_0725/'
-# unique_genus = read_and_filter_genus_names(directory)
-
-
-# def merge_read_counts_with_genus(directory, unique_genus):
-#     unique_genus_df = pd.DataFrame(unique_genus, columns=['rank', 'taxName'])
-#     all_data = unique_genus_df.copy()
-
-#     for filename in os.listdir(directory):
-#         if filename.endswith("_report"):
-#             file_path = os.path.join(directory, filename)
-#             df = pd.read_csv(file_path, sep='\t', header=None, skiprows=3)
-#             df.columns = ['percent', 'reads', 'taxReads', 'kmers', 'dup', 'cov', 'taxID', 'rank', 'taxName']
-#             # Filter by genus and strip spaces
-#             filtered = df[df['rank'] == 'genus']
-#             filtered['taxName'] = filtered['taxName'].str.strip()
-#             filtered = filtered[['reads', 'rank', 'taxName']]
-#             # Merge
-#             merged = pd.merge(unique_genus_df, filtered, on=['rank', 'taxName'], how='left')
-#             merged.rename(columns={'reads': filename}, inplace=True)
-#             all_data = pd.merge(all_data, merged, on=['rank', 'taxName'], how='left')
-
-#     return all_data
-
-# # Combine everything
-# combined_data = merge_read_counts_with_genus(directory, unique_genus)
-# combined_data.columns
-# combined_data.to_csv(path + "Nasal_blood_genuslevel.counts.txt",index=False, sep='\t')
 
 
 import pandas as pd
