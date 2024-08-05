@@ -15,7 +15,7 @@ import argparse
 def read_and_filter_taxa_names(directory, rank):
     taxa_list = []
     for filename in os.listdir(directory):
-        if filename.endswith("_report"):
+        if filename.endswith(("_report", "_report.txt")):
             file_path = os.path.join(directory, filename)
             df = pd.read_csv(file_path, sep='\t', header=None, skiprows=3)
             df.columns = ['percent', 'reads', 'taxReads', 'kmers', 'dup', 'cov', 'taxID', 'rank', 'taxName']
@@ -32,7 +32,7 @@ def merge_read_counts(directory, unique_taxa, rank, output_file):
     all_data = unique_taxa_df.copy()
 
     for filename in os.listdir(directory):
-        if filename.endswith("_report"):
+        if filename.endswith(("_report", "_report.txt")):
             file_path = os.path.join(directory, filename)
             df = pd.read_csv(file_path, sep='\t', header=None, skiprows=3)
             df.columns = ['percent', 'reads', 'taxReads', 'kmers', 'dup', 'cov', 'taxID', 'rank', 'taxName']
